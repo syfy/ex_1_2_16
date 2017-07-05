@@ -7,10 +7,24 @@ public class Rational {
 
 	// recursive implementation
 	public static long gcd(long p, long q) {
-		if (q == 0)
-			return p;
-		else
-			return gcd(q, p % q);
+	//	if (q == 0)
+		//	return p;
+		//else
+		//	return gcd(q, p % q);
+		return gcd2(p,q);
+	}
+	
+	// non recursive implementation test
+	public static long gcd2(long p, long q) {
+		long gcd = Math.min(p, q);
+		for(long pp = Math.min(p, q); pp>0;pp--){
+			if((Math.max(p, q)%pp )==0 && (Math.min(p, q)%pp )==0){  // is divisible between two factors
+				return gcd;
+			}
+			gcd--;
+		}
+		return gcd;
+		
 	}
 
 	public void toLowestTerms() {
@@ -22,6 +36,9 @@ public class Rational {
 	}
 
 	Rational(long numerator, long denominator) {
+		
+		
+		//System.out.println(gcd(numerator, denominator)+" ===="+gcd2(numerator, denominator));
 		this.numerator = numerator;
 		this.denominator = denominator;
 		// System.out.println(gcd(numerator, denominator) );
